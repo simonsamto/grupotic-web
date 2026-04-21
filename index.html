@@ -3,280 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRUPOTIC | Automatización y Seguridad Electrónica</title>
-    <!-- Tailwind CSS -->
+    <title>GRUPOTIC | Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome para Íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
-                    colors: {
-                        brandYellow: '#FFC107',
-                        brandRed: '#E63946',
-                        darkBg: '#0f172a',
-                        darkCard: '#1e293b'
-                    }
-                }
-            }
+            theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] }, colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#0f172a', darkCard: '#1e293b' } } }
         }
     </script>
     <style>
-        /* Estilos Mágicos para el Banner Acordeón */
-        .banner-container {
-            height: 90vh;
-            min-height: 600px;
-            display: flex;
-        }
-        
-        .banner-panel {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border-right: 2px solid rgba(0,0,0,0.5);
-        }
-
-        .banner-panel:last-child { border-right: none; }
-
-        /* Estado expandido */
+        .banner-container { height: 85vh; min-height: 500px; display: flex; }
+        .banner-panel { flex: 1; background-size: cover; background-position: center; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); position: relative; overflow: hidden; cursor: pointer; border-right: 2px solid rgba(0,0,0,0.5); }
         .banner-panel.active { flex: 5; }
-
-        /* Título Vertical (Cuando está cerrado) */
-        .vertical-title {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            transition: opacity 0.3s;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: translateX(-50%) rotate(180deg);
-        }
-
+        .vertical-title { position: absolute; bottom: 40px; left: 50%; white-space: nowrap; transition: opacity 0.3s; writing-mode: vertical-rl; transform: translateX(-50%) rotate(180deg); }
         .banner-panel.active .vertical-title { opacity: 0; pointer-events: none; }
-
-        /* Contenido Expandido (Cuando está abierto) */
-        .expanded-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease 0.2s; /* Retraso para que primero se expanda */
-            pointer-events: none;
-        }
-
-        .banner-panel.active .expanded-content {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* Degradado oscuro para que el texto resalte */
-        .panel-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
-            transition: background 0.5s;
-        }
+        .expanded-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; opacity: 0; transform: translateY(20px); transition: all 0.5s ease 0.2s; pointer-events: none; }
+        .banner-panel.active .expanded-content { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .panel-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); transition: background 0.5s; }
         .banner-panel:hover .panel-overlay { background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, rgba(230,57,70,0.4) 100%); }
-
-        @media (max-width: 768px) {
-            .banner-container { flex-direction: column; height: auto; min-height: 100vh; pt-20; }
-            .banner-panel { min-height: 120px; border-right: none; border-bottom: 2px solid rgba(0,0,0,0.5); }
-            .banner-panel.active { min-height: 400px; }
-            .vertical-title { 
-                writing-mode: horizontal-tb; 
-                transform: none; 
-                left: 20px; 
-                bottom: 50%; 
-                transform: translateY(50%);
-            }
-        }
+        @media (max-width: 768px) { .banner-container { flex-direction: column; height: auto; min-height: 100vh; } .banner-panel { min-height: 120px; border-right: none; border-bottom: 2px solid rgba(0,0,0,0.5); } .banner-panel.active { min-height: 400px; } .vertical-title { writing-mode: horizontal-tb; transform: none; left: 20px; bottom: 50%; transform: translateY(50%); } }
     </style>
 </head>
-<body class="bg-darkBg text-white font-sans antialiased selection:bg-brandRed selection:text-white overflow-x-hidden">
+<body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden">
 
-    <!-- Navbar -->
+    <!-- Navbar Global -->
     <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 flex items-center gap-3">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3">
                     <img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC Logo">
-                </div>
+                </a>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#servicios" class="hover:text-brandYellow transition duration-300 font-semibold text-brandYellow">Servicios</a>
-                        <a href="#contacto" class="bg-gradient-to-r from-brandRed to-red-700 px-5 py-2 rounded-full font-bold hover:shadow-[0_0_15px_rgba(230,57,70,0.6)] transition duration-300">Contactar</a>
+                    <!-- ENLACES A LAS NUEVAS PÁGINAS -->
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="index.html" class="text-brandYellow font-bold">Inicio</a>
+                        <a href="nosotros.html" class="hover:text-brandYellow transition duration-300 font-semibold">Nosotros</a>
+                        <a href="sectores.html" class="hover:text-brandYellow transition duration-300 font-semibold">Sectores</a>
+                        <a href="contacto.html" class="bg-gradient-to-r from-brandRed to-red-700 px-5 py-2 rounded-full font-bold hover:shadow-[0_0_15px_rgba(230,57,70,0.6)] transition duration-300">Contactar</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- BANNER ACORDEÓN DE SERVICIOS (Al principio) -->
-    <section id="servicios" class="pt-20"> <!-- pt-20 para que no lo tape el menú -->
-        <div class="banner-container w-full" id="accordion-container">
-            
-            <!-- Panel 1 -->
+    <!-- Banner Acordeón -->
+    <section class="pt-20">
+        <div class="banner-container w-full">
             <div class="banner-panel active" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80');">
                 <div class="panel-overlay"></div>
-                <h3 class="vertical-title text-2xl font-bold tracking-widest uppercase text-white drop-shadow-lg flex items-center gap-2">
-                    <i class="fa-solid fa-video text-brandRed"></i> CCTV IA
-                </h3>
+                <h3 class="vertical-title text-xl font-bold tracking-widest uppercase text-white drop-shadow-lg"><i class="fa-solid fa-video text-brandRed mb-2"></i> CCTV</h3>
                 <div class="expanded-content">
-                    <div class="bg-black/60 backdrop-blur-md p-6 md:p-8 rounded-2xl border-l-4 border-brandRed inline-block max-w-2xl">
-                        <div class="bg-brandRed text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block mb-3">Seguridad Electrónica</div>
-                        <h2 class="text-3xl md:text-5xl font-black mb-3">Cámaras con IA</h2>
-                        <p class="text-gray-300 text-lg mb-6 hidden md:block">Analítica de video avanzada, reconocimiento facial y detección perimetral proactiva. Detén la intrusión antes de que ocurra.</p>
-                        <a href="#contacto" class="bg-brandYellow text-black font-bold py-3 px-8 rounded-full hover:bg-white transition duration-300 shadow-[0_0_15px_rgba(255,193,7,0.4)]">Cotizar Solución</a>
+                    <div class="bg-black/70 backdrop-blur-md p-6 rounded-2xl border-l-4 border-brandRed inline-block">
+                        <h2 class="text-3xl font-black mb-2">Cámaras IA</h2>
+                        <p class="text-gray-300 mb-4 hidden md:block">Analítica de video avanzada y reconocimiento facial.</p>
+                        <a href="contacto.html" class="bg-brandYellow text-black font-bold py-2 px-6 rounded-full hover:bg-white transition">Cotizar</a>
                     </div>
                 </div>
             </div>
-
             <!-- Panel 2 -->
             <div class="banner-panel" style="background-image: url('https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=1200&q=80');">
                 <div class="panel-overlay"></div>
-                <h3 class="vertical-title text-2xl font-bold tracking-widest uppercase text-white drop-shadow-lg flex items-center gap-2">
-                    <i class="fa-solid fa-fingerprint text-brandYellow"></i> Acceso
-                </h3>
+                <h3 class="vertical-title text-xl font-bold tracking-widest uppercase text-white drop-shadow-lg"><i class="fa-solid fa-fingerprint text-brandYellow mb-2"></i> Acceso</h3>
                 <div class="expanded-content">
-                    <div class="bg-black/60 backdrop-blur-md p-6 md:p-8 rounded-2xl border-l-4 border-brandYellow inline-block max-w-2xl">
-                        <div class="bg-brandYellow text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block mb-3">Control Sin Contacto</div>
-                        <h2 class="text-3xl md:text-5xl font-black mb-3">Control de Acceso</h2>
-                        <p class="text-gray-300 text-lg mb-6 hidden md:block">Biometría facial 3D, huella dactilar y acceso móvil vía Bluetooth para edificios residenciales y corporativos.</p>
-                        <a href="#contacto" class="bg-brandRed text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(230,57,70,0.4)]">Mejorar mi ingreso</a>
+                    <div class="bg-black/70 backdrop-blur-md p-6 rounded-2xl border-l-4 border-brandYellow inline-block">
+                        <h2 class="text-3xl font-black mb-2">Control de Acceso</h2>
+                        <p class="text-gray-300 mb-4 hidden md:block">Biometría y acceso móvil sin contacto.</p>
+                        <a href="contacto.html" class="bg-brandRed text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition">Saber más</a>
                     </div>
                 </div>
             </div>
-
             <!-- Panel 3 -->
             <div class="banner-panel" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
                 <div class="panel-overlay"></div>
-                <h3 class="vertical-title text-2xl font-bold tracking-widest uppercase text-white drop-shadow-lg flex items-center gap-2">
-                    <i class="fa-solid fa-leaf text-brandRed"></i> BMS Domótica
-                </h3>
+                <h3 class="vertical-title text-xl font-bold tracking-widest uppercase text-white drop-shadow-lg"><i class="fa-solid fa-leaf text-brandRed mb-2"></i> Domótica</h3>
                 <div class="expanded-content">
-                    <div class="bg-black/60 backdrop-blur-md p-6 md:p-8 rounded-2xl border-l-4 border-brandRed inline-block max-w-2xl">
-                        <div class="bg-brandRed text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block mb-3">Eficiencia Energética</div>
-                        <h2 class="text-3xl md:text-5xl font-black mb-3">Edificios Inteligentes</h2>
-                        <p class="text-gray-300 text-lg mb-6 hidden md:block">Automatización (BMS) de iluminación, clima y energía. Ahorra hasta un 30% operando tu edificio de manera inteligente.</p>
-                        <a href="#contacto" class="bg-brandYellow text-black font-bold py-3 px-8 rounded-full hover:bg-white transition duration-300 shadow-[0_0_15px_rgba(255,193,7,0.4)]">Automatizar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Panel 4 -->
-            <div class="banner-panel" style="background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1200&q=80');">
-                <div class="panel-overlay"></div>
-                <h3 class="vertical-title text-2xl font-bold tracking-widest uppercase text-white drop-shadow-lg flex items-center gap-2">
-                    <i class="fa-solid fa-fire text-brandYellow"></i> Incendios
-                </h3>
-                <div class="expanded-content">
-                    <div class="bg-black/60 backdrop-blur-md p-6 md:p-8 rounded-2xl border-l-4 border-brandYellow inline-block max-w-2xl">
-                        <div class="bg-brandYellow text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block mb-3">Seguridad Vital</div>
-                        <h2 class="text-3xl md:text-5xl font-black mb-3">Detección de Fuego</h2>
-                        <p class="text-gray-300 text-lg mb-6 hidden md:block">Sistemas direccionables que indican el punto exacto de la emergencia, integrados a rutas de evacuación automatizadas.</p>
-                        <a href="#contacto" class="bg-brandRed text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(230,57,70,0.4)]">Proteger mi edificio</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Panel 5 -->
-            <div class="banner-panel" style="background-image: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=1200&q=80');">
-                <div class="panel-overlay"></div>
-                <h3 class="vertical-title text-2xl font-bold tracking-widest uppercase text-white drop-shadow-lg flex items-center gap-2">
-                    <i class="fa-solid fa-network-wired text-brandRed"></i> Redes
-                </h3>
-                <div class="expanded-content">
-                    <div class="bg-black/60 backdrop-blur-md p-6 md:p-8 rounded-2xl border-l-4 border-brandRed inline-block max-w-2xl">
-                        <div class="bg-brandRed text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block mb-3">Infraestructura Base</div>
-                        <h2 class="text-3xl md:text-5xl font-black mb-3">Redes y Conectividad</h2>
-                        <p class="text-gray-300 text-lg mb-6 hidden md:block">Cableado estructurado y redes robustas (Fibra Óptica/WiFi 6) para soportar toda la tecnología de su empresa.</p>
-                        <a href="#contacto" class="bg-brandYellow text-black font-bold py-3 px-8 rounded-full hover:bg-white transition duration-300 shadow-[0_0_15px_rgba(255,193,7,0.4)]">Diseñar mi red</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Barra de separación elegante -->
-    <div class="w-full h-2 bg-gradient-to-r from-brandRed via-brandYellow to-brandRed"></div>
-
-    <!-- Contacto Section -->
-    <section id="contacto" class="py-20 relative bg-[#0b1120]">
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-3xl md:text-5xl font-black mb-8">¿Listo para evolucionar? <span class="text-brandYellow">Contáctanos</span></h2>
-            <p class="text-gray-400 mb-12 text-lg">Asesoría especializada para tus proyectos de seguridad y automatización.</p>
-            
-            <div class="bg-darkCard p-10 rounded-3xl border border-gray-700 shadow-[0_0_30px_rgba(230,57,70,0.1)] hover:border-brandRed transition duration-500">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-                    <!-- Teléfonos -->
-                    <div>
-                        <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-phone mr-3 text-brandRed text-2xl"></i> Líneas de Atención</h4>
-                        <ul class="space-y-4 text-lg pl-9">
-                            <li><a href="tel:+573112169390" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fa-brands fa-whatsapp text-green-500"></i> +57 311 216 9390</a></li>
-                            <li><a href="tel:+573192149167" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fa-brands fa-whatsapp text-green-500"></i> +57 319 214 9167</a></li>
-                            <li><a href="tel:+576013651027" class="hover:text-brandYellow transition text-gray-300">+57 601 365 1027 (Fijo)</a></li>
-                        </ul>
-                    </div>
-                    <!-- Email & Web -->
-                    <div>
-                        <div class="mb-8">
-                            <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-envelope mr-3 text-brandRed text-2xl"></i> Correo Electrónico</h4>
-                            <a href="mailto:info@grupotic.net" class="text-lg pl-9 hover:text-brandYellow transition block">info@grupotic.net</a>
-                        </div>
-                        <div>
-                            <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-globe mr-3 text-brandRed text-2xl"></i> Portal Web</h4>
-                            <a href="https://www.grupotic.net" target="_blank" class="text-lg pl-9 hover:text-brandYellow transition block">www.grupotic.net</a>
-                        </div>
+                    <div class="bg-black/70 backdrop-blur-md p-6 rounded-2xl border-l-4 border-brandRed inline-block">
+                        <h2 class="text-3xl font-black mb-2">Edificios Inteligentes</h2>
+                        <p class="text-gray-300 mb-4 hidden md:block">Ahorra energía automatizando tu edificio (BMS).</p>
+                        <a href="contacto.html" class="bg-brandYellow text-black font-bold py-2 px-6 rounded-full hover:bg-white transition">Automatizar</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-900 text-center">
-        <p class="text-gray-600 text-sm font-semibold tracking-wider">&copy; 2024 GRUPOTIC. SEGURIDAD Y AUTOMATIZACIÓN.</p>
-    </footer>
+    <!-- NUEVA SECCIÓN 1: Aliados Tecnológicos -->
+    <section class="py-16 bg-[#0b1120]">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-xl text-gray-400 font-semibold mb-8 uppercase tracking-widest">Trabajamos con las mejores marcas</h3>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
+                <!-- Como no tengo los logos exactos, uso texto estilizado simulando logos -->
+                <div class="text-2xl font-black text-white flex items-center gap-2"><i class="fa-brands fa-aws"></i> AWS</div>
+                <div class="text-2xl font-black text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> HIKVISION</div>
+                <div class="text-2xl font-black text-white flex items-center gap-2"><i class="fa-solid fa-microchip"></i> DAHUA</div>
+                <div class="text-2xl font-black text-white flex items-center gap-2"><i class="fa-solid fa-lock"></i> ZKTECO</div>
+                <div class="text-2xl font-black text-white flex items-center gap-2"><i class="fa-solid fa-house-signal"></i> CONTROL4</div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Script para hacer funcionar el Acordeón al pasar el mouse (hover) o tocar -->
+    <footer class="bg-black py-8 border-t border-gray-900 text-center"><p class="text-gray-600 text-sm font-semibold">&copy; 2024 GRUPOTIC.</p></footer>
+
     <script>
         const panels = document.querySelectorAll('.banner-panel');
-
         panels.forEach(panel => {
-            // Para computadores (cuando pasas el mouse)
-            panel.addEventListener('mouseenter', () => {
-                removeActiveClasses();
-                panel.classList.add('active');
-            });
-
-            // Para celulares (cuando tocas la pantalla)
-            panel.addEventListener('click', () => {
-                removeActiveClasses();
-                panel.classList.add('active');
-            });
+            panel.addEventListener('mouseenter', () => { document.querySelectorAll('.banner-panel').forEach(p => p.classList.remove('active')); panel.classList.add('active'); });
         });
-
-        function removeActiveClasses() {
-            panels.forEach(panel => {
-                panel.classList.remove('active');
-            });
-        }
     </script>
 </body>
 </html>

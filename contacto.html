@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPOTIC | Contacto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] }, colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#0f172a', darkCard: '#1e293b' } } } }</script>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased">
+
+    <!-- Navbar Global -->
+    <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html"><img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC"></a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-brandYellow font-semibold transition">Inicio</a>
+                <a href="nosotros.html" class="hover:text-brandYellow font-semibold transition">Nosotros</a>
+                <a href="sectores.html" class="hover:text-brandYellow font-semibold transition">Sectores</a>
+                <a href="contacto.html" class="text-brandRed font-bold border-b-2 border-brandRed pb-1">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header y Contacto -->
+    <section class="pt-32 pb-20 relative bg-[#0b1120] min-h-screen flex items-center">
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center w-full">
+            <h1 class="text-4xl md:text-6xl font-black mb-8">Comunícate con <span class="text-brandYellow">Nosotros</span></h1>
+            <p class="text-gray-400 mb-12 text-lg">Asesoría especializada para tus proyectos de seguridad y automatización.</p>
+            
+            <div class="bg-darkCard p-10 rounded-3xl border border-gray-700 shadow-[0_0_30px_rgba(230,57,70,0.1)]">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                    <div>
+                        <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-phone mr-3 text-brandRed text-2xl"></i> Líneas de Atención</h4>
+                        <ul class="space-y-4 text-lg pl-9">
+                            <li><a href="tel:+573112169390" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fa-brands fa-whatsapp text-green-500"></i> +57 311 216 9390</a></li>
+                            <li><a href="tel:+573192149167" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fa-brands fa-whatsapp text-green-500"></i> +57 319 214 9167</a></li>
+                            <li><span class="text-gray-300"><i class="fa-solid fa-phone-volume text-sm mr-1"></i> +57 601 365 1027 (Fijo)</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="mb-8">
+                            <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-envelope mr-3 text-brandRed text-2xl"></i> Correo Electrónico</h4>
+                            <a href="mailto:info@grupotic.net" class="text-lg pl-9 hover:text-brandYellow transition block">info@grupotic.net</a>
+                        </div>
+                        <div>
+                            <h4 class="text-brandYellow font-bold text-xl mb-4 flex items-center"><i class="fa-solid fa-globe mr-3 text-brandRed text-2xl"></i> Portal Web</h4>
+                            <a href="https://www.grupotic.net" target="_blank" class="text-lg pl-9 hover:text-brandYellow transition block">www.grupotic.net</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 border-t border-gray-900 text-center"><p class="text-gray-600 text-sm font-semibold">&copy; 2024 GRUPOTIC.</p></footer>
+</body>
+</html>
