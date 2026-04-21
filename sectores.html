@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPOTIC | Sectores de Aplicación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] }, colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#0f172a', darkCard: '#1e293b' } } } }</script>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html"><img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC"></a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="hover:text-brandYellow font-semibold transition">Inicio</a>
+                <a href="nosotros.html" class="hover:text-brandYellow font-semibold transition">Nosotros</a>
+                <a href="sectores.html" class="text-brandYellow font-bold">Sectores</a>
+                <a href="mantenimiento.html" class="hover:text-brandYellow font-semibold transition">Mantenimiento</a>
+                <a href="contacto.html" class="bg-gradient-to-r from-brandRed to-red-700 px-5 py-2 rounded-full font-bold transition hover:shadow-[0_0_15px_rgba(230,57,70,0.6)]">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Sectores -->
+    <div class="pt-32 pb-16 text-center border-b border-gray-800 bg-[#0b1120]">
+        <h1 class="text-4xl md:text-6xl font-black mb-4">Sectores de <span class="text-brandRed">Aplicación</span></h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto px-4">Adaptamos nuestra tecnología de seguridad y automatización a las necesidades específicas de cada entorno.</p>
+    </div>
+
+    <!-- NUEVA SECCIÓN 4: Sectores (Cards Grandes) -->
+    <section class="py-20 max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Sector 1: Residencial -->
+        <div class="bg-darkCard rounded-3xl overflow-hidden border border-gray-800 hover:border-brandYellow transition duration-500 group">
+            <div class="h-48 overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" alt="Residencial" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="p-8 relative">
+                <div class="w-14 h-14 bg-brandYellow rounded-full flex items-center justify-center text-2xl text-black absolute -top-7 right-8 shadow-lg z-20">
+                    <i class="fa-solid fa-building-user"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-3 text-white">Residencial</h2>
+                <p class="text-gray-400 mb-6">Edificios y conjuntos residenciales inteligentes. Modernizamos el ingreso con biometría, instalamos CCTV para áreas comunes y automatizamos la iluminación para reducir el costo de administración.</p>
+                <ul class="space-y-2 text-sm font-semibold text-gray-300">
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Citofonía Virtual</li>
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Barreras vehiculares</li>
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Domótica para apartamentos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sector 2: Corporativo -->
+        <div class="bg-darkCard rounded-3xl overflow-hidden border border-gray-800 hover:border-brandRed transition duration-500 group">
+            <div class="h-48 overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Corporativo" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="p-8 relative">
+                <div class="w-14 h-14 bg-brandRed rounded-full flex items-center justify-center text-2xl text-white absolute -top-7 right-8 shadow-lg z-20">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-3 text-white">Empresarial</h2>
+                <p class="text-gray-400 mb-6">Oficinas y centros de negocios. Protegemos la información y activos mediante redes estructuradas, control de asistencia de empleados y sistemas de detección de incendios (BMS).</p>
+                <ul class="space-y-2 text-sm font-semibold text-gray-300">
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Redes WiFi 6 y Fibra Óptica</li>
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Control de tiempo y asistencia</li>
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Salas de juntas automatizadas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sector 3: Industrial -->
+        <div class="bg-darkCard rounded-3xl overflow-hidden border border-gray-800 hover:border-brandYellow transition duration-500 group">
+            <div class="h-48 overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Industrial" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="p-8 relative">
+                <div class="w-14 h-14 bg-gray-400 rounded-full flex items-center justify-center text-2xl text-black absolute -top-7 right-8 shadow-lg z-20">
+                    <i class="fa-solid fa-industry"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-3 text-white">Industrial y Logístico</h2>
+                <p class="text-gray-400 mb-6">Bodegas, fábricas y centros logísticos. Soluciones robustas para grandes superficies. Analítica de video para protección perimetral e infraestructura de red industrial.</p>
+                <ul class="space-y-2 text-sm font-semibold text-gray-300">
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Cámaras PTZ y Térmicas</li>
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Detección de intrusos con IA</li>
+                    <li><i class="fa-solid fa-check text-brandRed mr-2"></i> Control de acceso vehicular pesado</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="bg-black py-8 border-t border-gray-900 text-center"><p class="text-gray-600 text-sm font-semibold">&copy; 2024 GRUPOTIC.</p></footer>
+</body>
+</html>

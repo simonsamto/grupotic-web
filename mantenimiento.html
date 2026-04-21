@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPOTIC | Soporte y Mantenimiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] }, colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#0f172a', darkCard: '#1e293b' } } } }</script>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html"><img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC"></a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="hover:text-brandYellow font-semibold transition">Inicio</a>
+                <a href="nosotros.html" class="hover:text-brandYellow font-semibold transition">Nosotros</a>
+                <a href="sectores.html" class="hover:text-brandYellow font-semibold transition">Sectores</a>
+                <a href="mantenimiento.html" class="text-brandYellow font-bold">Mantenimiento</a>
+                <a href="contacto.html" class="bg-gradient-to-r from-brandRed to-red-700 px-5 py-2 rounded-full font-bold transition hover:shadow-[0_0_15px_rgba(230,57,70,0.6)]">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Mantenimiento -->
+    <div class="pt-32 pb-16 text-center border-b border-gray-800 bg-tech" style="background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=1920&q=80'); background-size: cover;">
+        <h1 class="text-4xl md:text-6xl font-black mb-4">Soporte y <span class="text-brandYellow">Mantenimiento</span></h1>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto px-4">Garantizamos que tu inversión tecnológica funcione al 100% las 24 horas del día, los 365 días del año.</p>
+    </div>
+
+    <!-- NUEVA SECCIÓN 5: Planes de Mantenimiento -->
+    <section class="py-20 max-w-7xl mx-auto px-4">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Protege tus equipos, prolonga su vida útil</h2>
+            <p class="text-gray-400">Ofrecemos pólizas y planes de servicio técnico adaptados a tu copropiedad o empresa.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Plan Preventivo -->
+            <div class="bg-darkCard p-8 rounded-3xl border border-gray-700 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gray-700 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">BÁSICO</div>
+                <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-3xl text-brandYellow mb-6 border border-gray-600">
+                    <i class="fa-solid fa-broom"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Mantenimiento Preventivo</h3>
+                <p class="text-gray-400 mb-6 h-20">Evita fallos futuros. Revisión, limpieza física de equipos, ajuste de conexiones y actualización de firmware.</p>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8 border-t border-gray-700 pt-6">
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Limpieza de lentes de cámaras</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Revisión de UPS y baterías</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Pruebas de software BMS</li>
+                </ul>
+                <a href="contacto.html" class="block text-center border border-brandYellow text-brandYellow font-bold py-3 rounded-full hover:bg-brandYellow hover:text-black transition">Solicitar Visita</a>
+            </div>
+
+            <!-- Plan Correctivo (Destacado) -->
+            <div class="bg-gradient-to-b from-[#1e293b] to-[#0f172a] p-8 rounded-3xl border-2 border-brandRed relative shadow-[0_0_30px_rgba(230,57,70,0.2)] transform md:-translate-y-4">
+                <div class="absolute top-0 right-0 bg-brandRed text-white text-xs font-bold px-3 py-1 rounded-bl-lg">MÁS POPULAR</div>
+                <div class="w-16 h-16 bg-red-900/50 rounded-full flex items-center justify-center text-3xl text-brandRed mb-6 border border-red-500">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Soporte Correctivo</h3>
+                <p class="text-gray-300 mb-6 h-20">Atención rápida de emergencias. Diagnóstico y reparación o reemplazo de partes que presenten fallas inesperadas.</p>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8 border-t border-gray-700 pt-6">
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Tiempos de respuesta (SLA) rápidos</li>
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Cambio de repuestos dañados</li>
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Re-configuración de sistemas</li>
+                    <li><i class="fa-solid fa-check text-brandYellow mr-2"></i> Equipos de respaldo temporales</li>
+                </ul>
+                <a href="contacto.html" class="block text-center bg-brandRed text-white font-bold py-3 rounded-full hover:bg-red-700 transition shadow-lg">Contratar Póliza</a>
+            </div>
+
+            <!-- Plan Remoto -->
+            <div class="bg-darkCard p-8 rounded-3xl border border-gray-700 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gray-700 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">24/7</div>
+                <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-3xl text-brandYellow mb-6 border border-gray-600">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Asistencia Remota</h3>
+                <p class="text-gray-400 mb-6 h-20">Solución inmediata sin esperar al técnico. Ideal para fallos de software, configuración de usuarios o contraseñas.</p>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8 border-t border-gray-700 pt-6">
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Mesa de ayuda telefónica</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Conexión remota a servidores</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Creación/Baja de usuarios (Acceso)</li>
+                </ul>
+                <a href="contacto.html" class="block text-center border border-brandYellow text-brandYellow font-bold py-3 rounded-full hover:bg-brandYellow hover:text-black transition">Saber más</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Banner Final CTA -->
+    <section class="bg-brandYellow py-12 text-center text-black">
+        <h3 class="text-2xl md:text-4xl font-black mb-4">¿Tus cámaras o alarmas dejaron de funcionar?</h3>
+        <p class="text-lg font-semibold mb-6">Realizamos diagnósticos en sitio. Recibe asistencia profesional hoy mismo.</p>
+        <a href="contacto.html" class="bg-black text-brandYellow font-bold py-3 px-8 rounded-full hover:bg-gray-900 transition shadow-2xl"><i class="fa-brands fa-whatsapp text-green-500 mr-2 text-xl"></i> Agendar Revisión</a>
+    </section>
+
+    <footer class="bg-black py-8 text-center text-gray-500 text-sm font-semibold">&copy; 2024 GRUPOTIC. Todos los derechos reservados.</footer>
+</body>
+</html>
