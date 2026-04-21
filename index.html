@@ -34,22 +34,32 @@
             background-position: center;
             background-attachment: fixed;
         }
+        /* Animación suave para el acordeón */
+        .accordion-content {
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-darkBg text-white font-sans antialiased selection:bg-brandRed selection:text-white">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-gray-800">
+    <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
-                    <!-- Asegúrate de tener tu logo.png en la misma carpeta -->
                     <img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC Logo">
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#inicio" class="hover:text-brandYellow transition duration-300 font-semibold">Inicio</a>
                         <a href="#servicios" class="hover:text-brandYellow transition duration-300 font-semibold">Servicios</a>
+                        <a href="#novedades" class="hover:text-brandYellow transition duration-300 font-semibold">Innovación</a>
                         <a href="#contacto" class="bg-gradient-to-r from-brandRed to-red-700 px-5 py-2 rounded-full font-bold hover:shadow-[0_0_15px_rgba(230,57,70,0.6)] transition duration-300">Contactar</a>
                     </div>
                 </div>
@@ -77,35 +87,133 @@
     <section id="servicios" class="py-20 bg-darkBg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nuestros <span class="text-brandRed">Servicios</span></h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Nuestros <span class="text-brandRed">Servicios</span></h2>
                 <div class="w-24 h-1 bg-brandYellow mx-auto rounded"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandYellow hover:-translate-y-2 transition duration-300 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-brandYellow to-orange-500 rounded-lg flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:shadow-brandYellow/50">
+                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandYellow hover:-translate-y-2 transition duration-300 shadow-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brandYellow to-orange-500 rounded-lg flex items-center justify-center text-2xl mb-6 shadow-lg">
                         <i class="fa-solid fa-building-shield text-darkBg"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">Seguridad Electrónica</h3>
                     <p class="text-gray-400">Sistemas de CCTV, control de acceso, alarmas y monitoreo 24/7 para proteger lo que más importa.</p>
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandRed hover:-translate-y-2 transition duration-300 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-brandRed to-red-800 rounded-lg flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:shadow-brandRed/50">
+                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandRed hover:-translate-y-2 transition duration-300 shadow-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brandRed to-red-800 rounded-lg flex items-center justify-center text-2xl mb-6 shadow-lg">
                         <i class="fa-solid fa-microchip text-white"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">Automatización</h3>
                     <p class="text-gray-400">Domótica e inmótica. Control de iluminación, clima, y energía para edificios inteligentes y eficientes.</p>
                 </div>
-                <!-- Card 3 -->
-                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandYellow hover:-translate-y-2 transition duration-300 group">
+                <div class="bg-darkCard p-8 rounded-2xl border border-gray-800 hover:border-brandYellow hover:-translate-y-2 transition duration-300 shadow-xl">
                     <div class="w-16 h-16 bg-gradient-to-br from-gray-300 to-gray-500 rounded-lg flex items-center justify-center text-2xl mb-6 shadow-lg">
                         <i class="fa-solid fa-network-wired text-darkBg"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">Redes y Conectividad</h3>
                     <p class="text-gray-400">Infraestructura robusta para garantizar la comunicación fluida de todos los sistemas integrados de su edificio.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Novedades / Acordeón Section -->
+    <section id="novedades" class="py-20 bg-[#0b1120] border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Innovación y <span class="text-brandYellow">Tecnología</span></h2>
+                <div class="w-24 h-1 bg-brandRed mx-auto rounded mb-6"></div>
+                <p class="text-gray-400 text-lg">Conoce los últimos avances y soluciones especializadas que GRUPOTIC trae para tus proyectos.</p>
+            </div>
+
+            <!-- Contenedor del Acordeón -->
+            <div class="space-y-4">
+                
+                <!-- Item 1 -->
+                <div class="border border-gray-700 rounded-2xl overflow-hidden bg-darkCard">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-800 transition duration-300" onclick="toggleAccordion('acc1')">
+                        <span class="text-xl font-bold flex items-center gap-3"><i class="fa-solid fa-video text-brandRed"></i> Inteligencia Artificial en Cámaras de Seguridad</span>
+                        <i id="icon-acc1" class="fa-solid fa-chevron-down text-brandYellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="content-acc1" class="accordion-content bg-gray-900/50">
+                        <div class="p-6 md:flex gap-6 items-center">
+                            <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" alt="CCTV AI" class="w-full md:w-1/3 h-48 object-cover rounded-xl border border-gray-700 shadow-lg mb-4 md:mb-0">
+                            <div>
+                                <h4 class="text-lg font-bold text-brandYellow mb-2">Detección proactiva antes de que ocurra el incidente</h4>
+                                <p class="text-gray-300">Los sistemas de CCTV modernos ya no solo graban. Implementamos cámaras con analítica de video (IA) capaces de reconocer rostros, detectar cruces de línea perimetral, identificar placas de vehículos y enviar alertas en tiempo real a tu smartphone o central de monitoreo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="border border-gray-700 rounded-2xl overflow-hidden bg-darkCard">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-800 transition duration-300" onclick="toggleAccordion('acc2')">
+                        <span class="text-xl font-bold flex items-center gap-3"><i class="fa-solid fa-leaf text-brandYellow"></i> Automatización y Eficiencia Energética (BMS)</span>
+                        <i id="icon-acc2" class="fa-solid fa-chevron-down text-brandYellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="content-acc2" class="accordion-content bg-gray-900/50">
+                        <div class="p-6 md:flex gap-6 items-center">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Edificio Inteligente" class="w-full md:w-1/3 h-48 object-cover rounded-xl border border-gray-700 shadow-lg mb-4 md:mb-0">
+                            <div>
+                                <h4 class="text-lg font-bold text-brandRed mb-2">Convierte tu edificio en un entorno sostenible</h4>
+                                <p class="text-gray-300">Mediante sistemas BMS (Building Management Systems), integramos el control de iluminación, aire acondicionado y energía. Los sensores detectan áreas vacías para apagar luces y regular el clima, logrando hasta un 30% de ahorro en la factura eléctrica de tu empresa o conjunto residencial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="border border-gray-700 rounded-2xl overflow-hidden bg-darkCard">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-800 transition duration-300" onclick="toggleAccordion('acc3')">
+                        <span class="text-xl font-bold flex items-center gap-3"><i class="fa-solid fa-fingerprint text-brandRed"></i> Control de Acceso Biométrico y Sin Contacto</span>
+                        <i id="icon-acc3" class="fa-solid fa-chevron-down text-brandYellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="content-acc3" class="accordion-content bg-gray-900/50">
+                        <div class="p-6 md:flex gap-6 items-center">
+                            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" alt="Control de Acceso" class="w-full md:w-1/3 h-48 object-cover rounded-xl border border-gray-700 shadow-lg mb-4 md:mb-0">
+                            <div>
+                                <h4 class="text-lg font-bold text-brandYellow mb-2">Ingreso seguro, rápido y moderno</h4>
+                                <p class="text-gray-300">Dile adiós a las llaves físicas. Instalamos terminales de reconocimiento facial 3D, lectura de huellas dactilares y acceso mediante Bluetooth desde el celular. Ideal para el control de empleados en oficinas y el ingreso de residentes en edificios modernos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="border border-gray-700 rounded-2xl overflow-hidden bg-darkCard">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-800 transition duration-300" onclick="toggleAccordion('acc4')">
+                        <span class="text-xl font-bold flex items-center gap-3"><i class="fa-solid fa-mobile-screen-button text-brandYellow"></i> Integración IoT para Hogares Inteligentes</span>
+                        <i id="icon-acc4" class="fa-solid fa-chevron-down text-brandYellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="content-acc4" class="accordion-content bg-gray-900/50">
+                        <div class="p-6 md:flex gap-6 items-center">
+                            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80" alt="Domotica" class="w-full md:w-1/3 h-48 object-cover rounded-xl border border-gray-700 shadow-lg mb-4 md:mb-0">
+                            <div>
+                                <h4 class="text-lg font-bold text-brandRed mb-2">Control total en la palma de tu mano</h4>
+                                <p class="text-gray-300">La Domótica (Internet de las Cosas - IoT) permite controlar persianas, cerraduras, alarmas y cámaras desde una sola App o mediante comandos de voz (Alexa/Google Home). Crea escenarios automáticos, como el "Modo Noche", que cierra puertas y activa la seguridad con un solo toque.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="border border-gray-700 rounded-2xl overflow-hidden bg-darkCard">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-800 transition duration-300" onclick="toggleAccordion('acc5')">
+                        <span class="text-xl font-bold flex items-center gap-3"><i class="fa-solid fa-fire-extinguisher text-brandRed"></i> Detección de Incendios y Evacuación</span>
+                        <i id="icon-acc5" class="fa-solid fa-chevron-down text-brandYellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="content-acc5" class="accordion-content bg-gray-900/50">
+                        <div class="p-6 md:flex gap-6 items-center">
+                            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80" alt="Alarma Incendios" class="w-full md:w-1/3 h-48 object-cover rounded-xl border border-gray-700 shadow-lg mb-4 md:mb-0">
+                            <div>
+                                <h4 class="text-lg font-bold text-brandYellow mb-2">Seguridad vital para normativas exigentes</h4>
+                                <p class="text-gray-300">Sistemas direccionables de detección de humo y temperatura que indican el punto exacto de la emergencia. Al integrarse con la automatización del edificio, el sistema puede liberar puertas de emergencia, detener ascensores y activar extracción de humos automáticamente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -117,9 +225,8 @@
             <h2 class="text-3xl md:text-5xl font-black mb-8">Contáctanos</h2>
             <p class="text-gray-300 mb-12 text-lg">Estamos listos para llevar la tecnología y seguridad de tus proyectos al siguiente nivel.</p>
             
-            <div class="bg-darkCard/80 backdrop-blur-lg p-10 rounded-3xl border border-gray-700 shadow-2xl">
+            <div class="bg-darkCard/80 backdrop-blur-lg p-10 rounded-3xl border border-gray-700 shadow-[0_0_30px_rgba(230,57,70,0.15)]">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-                    
                     <!-- Teléfonos -->
                     <div>
                         <h4 class="text-brandYellow font-bold text-xl mb-4"><i class="fa-solid fa-phone mr-2"></i> Teléfonos</h4>
@@ -129,7 +236,6 @@
                             <li><a href="tel:+576013651027" class="hover:text-brandRed transition">+57 601 365 1027</a></li>
                         </ul>
                     </div>
-
                     <!-- Email & Web -->
                     <div>
                         <div class="mb-8">
@@ -141,7 +247,6 @@
                             <a href="https://www.grupotic.net" target="_blank" class="text-lg hover:text-brandRed transition">www.grupotic.net</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -152,5 +257,34 @@
         <p class="text-gray-500">&copy; 2024 GRUPOTIC. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Script para el Acordeón -->
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById('content-' + id);
+            const icon = document.getElementById('icon-' + id);
+            
+            // Si el contenido ya está abierto, lo cerramos
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                content.classList.remove('active');
+                icon.classList.remove('rotate-180');
+            } else {
+                // Cerramos todos los demás acordeones abiertos (Opcional, para mantenerlo limpio)
+                const allContents = document.querySelectorAll('.accordion-content');
+                const allIcons = document.querySelectorAll('[id^="icon-"]');
+                
+                allContents.forEach(c => {
+                    c.style.maxHeight = '0px';
+                    c.classList.remove('active');
+                });
+                allIcons.forEach(i => i.classList.remove('rotate-180'));
+
+                // Abrimos el seleccionado
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('active');
+                icon.classList.add('rotate-180');
+            }
+        }
+    </script>
 </body>
 </html>
