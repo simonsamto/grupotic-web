@@ -5,87 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRUPOTIC | Ingeniería y Seguridad</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <script>
+        tailwind.config = { theme: { extend: { colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#050b14', darkCard: '#0a1220' } } } }
+    </script>
     <style>
-        body { background: #020617; font-family: 'Inter', sans-serif; }
-        .hud-border { border: 1px solid rgba(230, 57, 70, 0.3); }
-        .glow { box-shadow: 0 0 15px rgba(230, 57, 70, 0.4); }
-        .grid-bg { background-image: radial-gradient(circle, rgba(230,57,70,0.1) 1px, transparent 1px); background-size: 40px 40px; }
+        body { background-color: #050b14; color: white; font-family: 'Montserrat', sans-serif; }
+        .hud-card { border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s; }
+        .hud-card:hover { border-color: #E63946; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="text-white grid-bg">
+<body>
 
-    <!-- Navegación tipo Sistema -->
-    <nav class="fixed w-full z-50 bg-[#020617]/90 border-b border-gray-800 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 bg-[#050b14]/90 backdrop-blur-md border-b border-gray-800 p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
             <img src="logo.png" class="h-12" alt="Logo">
-            <div class="hidden md:flex gap-8 uppercase tracking-widest text-xs font-bold">
-                <a href="index.html" class="text-brandRed">Inicio</a>
-                <a href="servicios.html" class="hover:text-brandYellow transition">Servicios</a>
-                <a href="energia.html" class="hover:text-brandYellow transition">Energía Solar</a>
-                <a href="incendio.html" class="hover:text-brandYellow transition">Sist. Incendio</a>
-                <a href="contacto.html" class="bg-brandRed px-6 py-2 rounded">Contacto</a>
+            <div class="hidden md:flex gap-6 font-mono text-xs uppercase tracking-widest">
+                <a href="#inicio" class="text-brandYellow">Inicio</a>
+                <a href="#servicios" class="hover:text-brandRed">Servicios</a>
+                <a href="contacto.html" class="border border-brandRed px-4 py-2 hover:bg-brandRed transition">Contacto</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Hero con impacto -->
-    <section class="pt-32 pb-20 px-6 max-w-7xl mx-auto text-center">
-        <h1 class="text-5xl md:text-8xl font-black uppercase mb-6 leading-tight">
-            Ingeniería de <span class="text-brandRed">Seguridad</span> <br> <span class="text-brandYellow">y Telecomunicaciones</span>
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-400 text-lg mb-10">12 años de experiencia certificada en radio bases, redes contra incendio, energía solar y automatización. Instalaciones de alto nivel en todo el país.</p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="contacto.html" class="bg-brandRed px-8 py-4 font-bold rounded hover:scale-105 transition">SOLICITAR CONSULTORÍA</a>
-            <a href="sectores.html" class="border border-gray-600 px-8 py-4 font-bold rounded hover:bg-gray-800 transition">VER CASOS DE ÉXITO</a>
+    <!-- Header -->
+    <header id="inicio" class="pt-32 pb-20 text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-black uppercase mb-6">GRUPO TIC SAS</h1>
+        <p class="text-gray-400 font-mono text-sm uppercase tracking-widest mb-8">12 Años de Ingeniería Certificada | NFPA | SG-SST</p>
+    </header>
+
+    <!-- Ruta de Servicios -->
+    <section id="servicios" class="max-w-4xl mx-auto px-4 pb-20">
+        
+        <!-- NODO: Protección Incendio -->
+        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
+            <h2 class="text-2xl font-black text-brandRed mb-4 uppercase flex items-center gap-4">
+                <i class="fa-solid fa-fire-extinguisher"></i> Sistemas Contra Incendio
+            </h2>
+            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
+                Implementación bajo norma NFPA 25 y NFPA 72. Diseño, redes de rociadores, detectores de humo y agentes limpios. Garantizamos la operatividad de sus sistemas de protección.
+            </p>
         </div>
+
+        <!-- NODO: Energía Solar -->
+        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
+            <h2 class="text-2xl font-black text-brandYellow mb-4 uppercase flex items-center gap-4">
+                <i class="fa-solid fa-solar-panel"></i> Energía Solar
+            </h2>
+            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
+                Implementación de sistemas fotovoltaicos. Aprovechamos la irradiancia constante de Colombia. Retorno de inversión garantizado y ahorro energético eficiente.
+            </p>
+        </div>
+
+        <!-- NODO: Telecomunicaciones -->
+        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
+            <h2 class="text-2xl font-black text-brandRed mb-4 uppercase flex items-center gap-4">
+                <i class="fa-solid fa-tower-broadcast"></i> Telecomunicaciones
+            </h2>
+            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
+                Especialistas en Radio Bases (BTS) para Claro y Movistar. Experiencia nacional en tecnologías 2G, 3G y 4G. Infraestructura, torres y microondas.
+            </p>
+        </div>
+
+        <!-- NODO: Seguridad Electrónica -->
+        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
+            <h2 class="text-2xl font-black text-brandYellow mb-4 uppercase flex items-center gap-4">
+                <i class="fa-solid fa-video"></i> Seguridad Electrónica
+            </h2>
+            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
+                CCTV, Control de Acceso, puertas automáticas y alarmas. Soluciones para propiedad horizontal con profesionales certificados en alturas.
+            </p>
+        </div>
+
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS CATEGORIZADOS (Basado en tu PDF) -->
-    <section class="py-20 bg-[#070b16]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Servicio: Incendio -->
-                <div class="hud-border p-8 hover:bg-red-900/10 transition group">
-                    <i class="fa-solid fa-fire-extinguisher text-brandRed text-4xl mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Protección Incendio</h3>
-                    <p class="text-gray-400 text-sm mb-6">Sistemas basados en norma NFPA. Diseño, implementación y mantenimiento de redes hidráulicas y detección temprana.</p>
-                    <a href="incendio.html" class="text-brandRed font-bold text-sm">ESPECIFICACIONES NFPA ></a>
-                </div>
-
-                <!-- Servicio: Radio Bases -->
-                <div class="hud-border p-8 hover:bg-red-900/10 transition group">
-                    <i class="fa-solid fa-tower-broadcast text-brandYellow text-4xl mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Telecomunicaciones</h3>
-                    <p class="text-gray-400 text-sm mb-6">Instalación y mantenimiento de Radio Bases (BTS) para operadores Claro, Movistar. Tecnología 2G/3G/4G.</p>
-                    <a href="telecom.html" class="text-brandYellow font-bold text-sm">VER EXPERIENCIA ></a>
-                </div>
-
-                <!-- Servicio: Energia Solar -->
-                <div class="hud-border p-8 hover:bg-red-900/10 transition group">
-                    <i class="fa-solid fa-solar-panel text-brandRed text-4xl mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Energía Solar</h3>
-                    <p class="text-gray-400 text-sm mb-6">Implementación de sistemas fotovoltaicos 100% autónomos. Aprovechamos la irradiancia constante de Colombia.</p>
-                    <a href="energia.html" class="text-brandRed font-bold text-sm">AHORRO Y EFICIENCIA ></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE CONFIANZA -->
-    <section class="py-20 text-center">
-        <h2 class="text-4xl font-bold mb-12">Nuestros <span class="text-brandRed">Aliados</span> nos Certifican</h2>
-        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 grayscale hover:grayscale-0 transition duration-700">
-            <!-- Logos representativos -->
-            <div class="p-6 border border-gray-800">ONU</div>
-            <div class="p-6 border border-gray-800">Policía Nacional</div>
-            <div class="p-6 border border-gray-800">El Tiempo</div>
-            <div class="p-6 border border-gray-800">Huawei/Claro</div>
-        </div>
-    </section>
-
+    <script>
+        // Animación al hacer scroll
+        const reveal = () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        reveal();
+    </script>
 </body>
 </html>
