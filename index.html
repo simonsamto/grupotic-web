@@ -3,95 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRUPOTIC | Ingeniería y Seguridad</title>
+    <title>GRUPOTIC | Ruta de Seguridad</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Montserrat para títulos, Space Mono para efecto "Terminal/Código" -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
-        tailwind.config = { theme: { extend: { colors: { brandYellow: '#FFC107', brandRed: '#E63946', darkBg: '#050b14', darkCard: '#0a1220' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        brandYellow: '#FFC107',
+                        brandRed: '#E63946',
+                        darkBg: '#050b14', /* Fondo aún más oscuro, casi negro azulado */
+                        darkCard: '#0a1220'
+                    }
+                }
+            }
+        }
     </script>
     <style>
-        body { background-color: #050b14; color: white; font-family: 'Montserrat', sans-serif; }
-        .hud-card { border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s; }
-        .hud-card:hover { border-color: #E63946; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        /* Fondo de Cuadrícula / Plano Tecnológico */
+        body {
+            background-color: #050b14;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Bordes cortados estilo Videojuego / Sci-Fi UI */
+        .hud-card {
+            clip-path: polygon(20px 0%, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0% 20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .hud-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 20px; height: 2px; background: currentColor; transition: width 0.3s;
+        }
+        .hud-card::after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 20px; height: 2px; background: currentColor; transition: width 0.3s;
+        }
+        .hud-card:hover::before, .hud-card:hover::after { width: 100%; }
+
+        /* Efecto Escáner Láser en las imágenes */
+        .scanner-container { position: relative; overflow: hidden; }
+        .scanner-line {
+            position: absolute;
+            top: -100%; left: 0; width: 100%; height: 4px;
+            background: currentColor;
+            box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+            opacity: 0; transition: opacity 0.3s; z-index: 10;
+        }
+        .hud-card:hover .scanner-line {
+            opacity: 1;
+            animation: scan 2s infinite linear;
+        }
+        @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+
+        /* Nodos de la ruta palpitantes (Radar) */
+        .pulse-node {
+            position: relative;
+        }
+        .pulse-node::before {
+            content: ''; position: absolute; inset: -10px; border-radius: 50%; border: 2px solid currentColor;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; opacity: 0;
+        }
+        @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } 0% { transform: scale(1); opacity: 0.8; } }
+
+        /* Animación de entrada al hacer scroll */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body>
+<body class="text-white font-sans antialiased overflow-x-hidden selection:bg-brandRed">
 
-    <!-- Nav -->
-    <nav class="fixed w-full z-50 bg-[#050b14]/90 backdrop-blur-md border-b border-gray-800 p-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <img src="logo.png" class="h-12" alt="Logo">
-            <div class="hidden md:flex gap-6 font-mono text-xs uppercase tracking-widest">
-                <a href="#inicio" class="text-brandYellow">Inicio</a>
-                <a href="#servicios" class="hover:text-brandRed">Servicios</a>
-                <a href="contacto.html" class="border border-brandRed px-4 py-2 hover:bg-brandRed transition">Contacto</a>
+    <!-- Navbar Global -->
+    <nav class="fixed w-full z-50 bg-[#050b14]/90 backdrop-blur-md border-b border-gray-800 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 relative group">
+                    <img class="h-16 w-auto relative z-10" src="logo.png" alt="GRUPOTIC Logo">
+                </a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 items-center">
+                        <a href="index.html" class="text-brandYellow font-bold flex items-center gap-2"><i class="fa-solid fa-crosshairs text-xs"></i> Inicio</a>
+                        <a href="nosotros.html" class="hover:text-brandYellow transition duration-300 font-mono text-sm tracking-widest uppercase">Nosotros</a>
+                        <a href="sectores.html" class="hover:text-brandYellow transition duration-300 font-mono text-sm tracking-widest uppercase">Sectores</a>
+                        <a href="mantenimiento.html" class="hover:text-brandYellow transition duration-300 font-mono text-sm tracking-widest uppercase">Soporte</a>
+                        <a href="contacto.html" class="border border-brandRed text-brandRed hover:bg-brandRed hover:text-white px-6 py-2 font-mono uppercase tracking-widest text-xs transition duration-300 hud-card">CONECTAR</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <header id="inicio" class="pt-32 pb-20 text-center px-4">
-        <h1 class="text-5xl md:text-7xl font-black uppercase mb-6">GRUPO TIC SAS</h1>
-        <p class="text-gray-400 font-mono text-sm uppercase tracking-widest mb-8">12 Años de Ingeniería Certificada | NFPA | SG-SST</p>
-    </header>
-
-    <!-- Ruta de Servicios -->
-    <section id="servicios" class="max-w-4xl mx-auto px-4 pb-20">
-        
-        <!-- NODO: Protección Incendio -->
-        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
-            <h2 class="text-2xl font-black text-brandRed mb-4 uppercase flex items-center gap-4">
-                <i class="fa-solid fa-fire-extinguisher"></i> Sistemas Contra Incendio
-            </h2>
-            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
-                Implementación bajo norma NFPA 25 y NFPA 72. Diseño, redes de rociadores, detectores de humo y agentes limpios. Garantizamos la operatividad de sus sistemas de protección.
-            </p>
+    <!-- Header Terminal (Efecto tipeo de computadora) -->
+    <div class="pt-36 pb-12 text-center px-4 relative z-10">
+        <div class="inline-block border border-gray-700 bg-gray-900/50 px-4 py-1 mb-6">
+            <span class="font-mono text-xs text-green-500 typewriter">> SYSTEM_BOOT: GRUPOTIC_OS V2.4_READY</span>
         </div>
+        <h1 class="text-4xl md:text-7xl font-black mb-4 tracking-tighter uppercase">
+            Ruta de <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandYellow to-brandRed">Integración</span>
+        </h1>
+        <p class="text-gray-400 font-mono max-w-2xl mx-auto text-sm">DESCIENDE POR LA RED Y DESBLOQUEA NUESTRAS SOLUCIONES TECNOLÓGICAS.</p>
+    </div>
 
-        <!-- NODO: Energía Solar -->
-        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
-            <h2 class="text-2xl font-black text-brandYellow mb-4 uppercase flex items-center gap-4">
-                <i class="fa-solid fa-solar-panel"></i> Energía Solar
-            </h2>
-            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
-                Implementación de sistemas fotovoltaicos. Aprovechamos la irradiancia constante de Colombia. Retorno de inversión garantizado y ahorro energético eficiente.
-            </p>
+    <!-- EL JUEGO / RUTA INTERACTIVA -->
+    <section class="py-10 relative">
+        <div class="max-w-5xl mx-auto px-4 relative">
+            
+            <!-- La Línea de Fibra Óptica Central (La Ruta) -->
+            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gray-800 -translate-x-1/2"></div>
+            <!-- La Luz que baja al hacer scroll -->
+            <div id="scroll-line" class="absolute left-4 md:left-1/2 top-0 w-1 bg-gradient-to-b from-brandYellow to-brandRed shadow-[0_0_15px_rgba(230,57,70,1)] -translate-x-1/2" style="height: 0%;"></div>
+
+            <!-- NODO 1: CCTV (Izquierda) -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 reveal">
+                <!-- Tarjeta (Izquierda) -->
+                <div class="w-full md:w-[45%] pl-12 md:pl-0 md:pr-12 order-2 md:order-1 mt-8 md:mt-0 text-brandRed group">
+                    <div class="hud-card bg-darkCard text-white group-hover:border-brandRed p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
+                            <span class="font-mono text-xs text-brandRed">ID_NODO: 01 // VIGILANCIA</span>
+                            <i class="fa-solid fa-unlock text-gray-600 group-hover:text-brandRed transition"></i>
+                        </div>
+                        <div class="scanner-container rounded h-40 mb-4 border border-gray-800">
+                            <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="CCTV">
+                            <div class="scanner-line text-brandRed"></div>
+                        </div>
+                        <h3 class="text-2xl font-black mb-2 tracking-wide uppercase">Cámaras IA</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed mb-4">Analítica perimetral, mapas de calor y reconocimiento facial inteligente en tiempo real.</p>
+                        <a href="contacto.html" class="inline-block w-full text-center bg-gray-900 hover:bg-brandRed text-gray-300 hover:text-white font-mono text-xs py-3 border border-gray-700 transition duration-300">INICIAR PROTOCOLO ></a>
+                    </div>
+                </div>
+                <!-- El Punto Central / Nodo -->
+                <div class="absolute left-4 md:left-1/2 w-6 h-6 bg-darkBg border-4 border-gray-700 rounded-full -translate-x-1/2 z-10 node-point transition duration-500" data-color="#E63946">
+                    <div class="pulse-node w-full h-full text-brandRed hidden"></div>
+                </div>
+                <!-- Espacio Vacío (Derecha) -->
+                <div class="hidden md:block w-[45%] order-3"></div>
+            </div>
+
+            <!-- NODO 2: ACCESO (Derecha) -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 reveal">
+                <div class="hidden md:block w-[45%] order-1"></div>
+                <div class="absolute left-4 md:left-1/2 w-6 h-6 bg-darkBg border-4 border-gray-700 rounded-full -translate-x-1/2 z-10 node-point transition duration-500" data-color="#FFC107">
+                    <div class="pulse-node w-full h-full text-brandYellow hidden"></div>
+                </div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-12 order-2 mt-8 md:mt-0 text-brandYellow group">
+                    <div class="hud-card bg-darkCard text-white group-hover:border-brandYellow p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
+                            <span class="font-mono text-xs text-brandYellow">ID_NODO: 02 // ACCESO</span>
+                            <i class="fa-solid fa-unlock text-gray-600 group-hover:text-brandYellow transition"></i>
+                        </div>
+                        <div class="scanner-container rounded h-40 mb-4 border border-gray-800">
+                            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Acceso">
+                            <div class="scanner-line text-brandYellow"></div>
+                        </div>
+                        <h3 class="text-2xl font-black mb-2 tracking-wide uppercase">Biometría</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed mb-4">Apertura sin contacto. Huella, facial 3D y códigos QR dinámicos para control de flujo de personal.</p>
+                        <a href="contacto.html" class="inline-block w-full text-center bg-gray-900 hover:bg-brandYellow text-gray-300 hover:text-black font-bold font-mono text-xs py-3 border border-gray-700 transition duration-300">INICIAR PROTOCOLO ></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NODO 3: BMS (Izquierda) -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 reveal">
+                <div class="w-full md:w-[45%] pl-12 md:pl-0 md:pr-12 order-2 md:order-1 mt-8 md:mt-0 text-brandRed group">
+                    <div class="hud-card bg-darkCard text-white group-hover:border-brandRed p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
+                            <span class="font-mono text-xs text-brandRed">ID_NODO: 03 // BMS_DOMÓTICA</span>
+                            <i class="fa-solid fa-unlock text-gray-600 group-hover:text-brandRed transition"></i>
+                        </div>
+                        <div class="scanner-container rounded h-40 mb-4 border border-gray-800">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="BMS">
+                            <div class="scanner-line text-brandRed"></div>
+                        </div>
+                        <h3 class="text-2xl font-black mb-2 tracking-wide uppercase">Automatización</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed mb-4">Gestión eficiente de energía, iluminación y clima. Tu edificio controlado desde una central única.</p>
+                        <a href="contacto.html" class="inline-block w-full text-center bg-gray-900 hover:bg-brandRed text-gray-300 hover:text-white font-mono text-xs py-3 border border-gray-700 transition duration-300">INICIAR PROTOCOLO ></a>
+                    </div>
+                </div>
+                <div class="absolute left-4 md:left-1/2 w-6 h-6 bg-darkBg border-4 border-gray-700 rounded-full -translate-x-1/2 z-10 node-point transition duration-500" data-color="#E63946">
+                    <div class="pulse-node w-full h-full text-brandRed hidden"></div>
+                </div>
+                <div class="hidden md:block w-[45%] order-3"></div>
+            </div>
+
+            <!-- NODO 4: REDES (Derecha) -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-10 reveal">
+                <div class="hidden md:block w-[45%] order-1"></div>
+                <div class="absolute left-4 md:left-1/2 w-6 h-6 bg-darkBg border-4 border-gray-700 rounded-full -translate-x-1/2 z-10 node-point transition duration-500" data-color="#FFC107">
+                    <div class="pulse-node w-full h-full text-brandYellow hidden"></div>
+                </div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-12 order-2 mt-8 md:mt-0 text-brandYellow group">
+                    <div class="hud-card bg-darkCard text-white group-hover:border-brandYellow p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
+                            <span class="font-mono text-xs text-brandYellow">ID_NODO: 04 // CONECTIVIDAD</span>
+                            <i class="fa-solid fa-unlock text-gray-600 group-hover:text-brandYellow transition"></i>
+                        </div>
+                        <div class="scanner-container rounded h-40 mb-4 border border-gray-800">
+                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Redes">
+                            <div class="scanner-line text-brandYellow"></div>
+                        </div>
+                        <h3 class="text-2xl font-black mb-2 tracking-wide uppercase">Redes / Datos</h3>
+                        <p class="text-gray-400 text-sm font-mono leading-relaxed mb-4">La espina dorsal de tu seguridad. Fibra óptica, cableado estructurado y WiFi corporativo.</p>
+                        <a href="contacto.html" class="inline-block w-full text-center bg-gray-900 hover:bg-brandYellow text-gray-300 hover:text-black font-bold font-mono text-xs py-3 border border-gray-700 transition duration-300">INICIAR PROTOCOLO ></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <!-- NODO: Telecomunicaciones -->
-        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
-            <h2 class="text-2xl font-black text-brandRed mb-4 uppercase flex items-center gap-4">
-                <i class="fa-solid fa-tower-broadcast"></i> Telecomunicaciones
-            </h2>
-            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
-                Especialistas en Radio Bases (BTS) para Claro y Movistar. Experiencia nacional en tecnologías 2G, 3G y 4G. Infraestructura, torres y microondas.
-            </p>
-        </div>
-
-        <!-- NODO: Seguridad Electrónica -->
-        <div class="reveal mb-16 hud-card p-8 bg-darkCard">
-            <h2 class="text-2xl font-black text-brandYellow mb-4 uppercase flex items-center gap-4">
-                <i class="fa-solid fa-video"></i> Seguridad Electrónica
-            </h2>
-            <p class="text-gray-300 font-mono text-sm leading-relaxed mb-4">
-                CCTV, Control de Acceso, puertas automáticas y alarmas. Soluciones para propiedad horizontal con profesionales certificados en alturas.
-            </p>
-        </div>
-
     </section>
 
+    <!-- Footer Terminal -->
+    <footer class="bg-black py-8 border-t border-gray-800 text-center relative z-10 mt-10">
+        <p class="text-gray-500 font-mono text-xs tracking-widest">> 2024_GRUPOTIC_SECURITY_SYSTEMS. ALL_RIGHTS_RESERVED.</p>
+    </footer>
+
+    <!-- SCRIPT DE JUEGO / RUTA -->
     <script>
-        // Animación al hacer scroll
-        const reveal = () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
+        // 1. Barra de progreso que baja por la línea central
+        window.addEventListener('scroll', () => {
+            const scrollLine = document.getElementById('scroll-line');
+            const scrollDistance = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            
+            // Calculamos el porcentaje de scroll, pero lo limitamos a la sección de la ruta
+            let scrollPercentage = (scrollDistance / maxScroll) * 120; // 120 para que llegue hasta abajo rápido
+            if(scrollPercentage > 100) scrollPercentage = 100;
+            
+            scrollLine.style.height = scrollPercentage + '%';
+        });
+
+        // 2. Encender Nodos (Círculos) cuando la línea pasa por ellos (Efecto Radar)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 // Se activa cuando la tarjeta está a la mitad de la pantalla
         };
-        window.addEventListener('scroll', reveal);
-        reveal();
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Revela la tarjeta
+                    entry.target.classList.add('active');
+                    
+                    // Enciende el nodo correspondiente (cambia color de borde y activa el pulso)
+                    const nodePoint = entry.target.querySelector('.node-point');
+                    const pulse = entry.target.querySelector('.pulse-node');
+                    const color = nodePoint.getAttribute('data-color');
+                    
+                    nodePoint.style.borderColor = color;
+                    pulse.classList.remove('hidden');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(element => {
+            observer.observe(element);
+        });
     </script>
 </body>
 </html>
