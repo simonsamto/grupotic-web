@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRUPOTIC | Inicio</title>
-    <!-- Tailwind CSS -->
+    <title>GRUPOTIC | Inicio - Seguridad 3D</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para Íconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -27,196 +24,170 @@
         }
     </script>
     <style>
-        /* ESTILOS DEL ACORDEÓN MINIMALISTA */
-        .minimal-accordion {
-            height: 50vh; /* Altura reducida a la mitad de la pantalla */
-            min-height: 400px;
-            max-height: 550px;
-            display: flex;
-            border-radius: 1.5rem; /* Bordes muy redondeados */
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* Magia 3D y Efecto Holográfico */
+        .perspective-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
         }
-        
-        .min-panel {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            position: relative;
-            cursor: pointer;
-            border-right: 1px solid rgba(255,255,255,0.05);
-        }
-        .min-panel:last-child { border-right: none; }
-        
-        /* Cuando el panel se expande */
-        .min-panel.active { flex: 4; }
 
-        /* Degradado base (más oscuro cuando está cerrado) */
-        .min-overlay {
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Capa de luz que sigue al mouse (brillo) */
+        .glare {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .tilt-card:hover .glare { opacity: 1; }
+
+        /* Elementos que "saltan" hacia adelante en 3D (Eje Z) */
+        .pop-out-layer {
+            transform: translateZ(60px); /* Hace que flote sobre la tarjeta */
+            filter: drop-shadow(0 20px 10px rgba(0,0,0,0.5));
+        }
+        .pop-out-text {
+            transform: translateZ(40px);
+        }
+
+        /* Degradado base de las tarjetas */
+        .card-bg-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(15,23,42,0.6);
-            transition: background 0.6s;
+            background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.8) 100%);
+            transition: background 0.5s;
+            z-index: 1;
         }
-        /* Degradado elegante cuando está abierto */
-        .min-panel.active .min-overlay {
-            background: linear-gradient(to top, rgba(15,23,42,1) 0%, rgba(15,23,42,0.4) 50%, transparent 100%);
-        }
-
-        /* Título e Ícono vertical (cerrado) */
-        .min-title-closed {
+        
+        .card-image {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: opacity 0.3s;
-        }
-        .min-title-closed span {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-        .min-panel.active .min-title-closed { opacity: 0; pointer-events: none; }
-
-        /* Contenido expandido minimalista */
-        .min-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
-            padding: 2.5rem;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.5s ease 0.2s;
-            pointer-events: none;
-        }
-        .min-panel.active .min-content {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: opacity 0.5s, transform 0.5s;
+            z-index: 0;
         }
 
-        /* Animación de la flecha en el enlace */
-        .link-arrow i { transition: transform 0.3s ease; }
-        .link-arrow:hover i { transform: translateX(8px); }
-
-        /* Móviles */
-        @media (max-width: 768px) { 
-            .minimal-accordion { flex-direction: column; height: 70vh; } 
-            .min-panel { min-height: 80px; } 
-            .min-panel.active { min-height: 300px; flex: 1; } 
-            .min-title-closed { flex-direction: row; bottom: 50%; transform: translate(-50%, 50%); left: 50%; }
-            .min-title-closed span { writing-mode: horizontal-tb; transform: none; }
-            .min-content { padding: 1.5rem; }
-        }
+        .tilt-card:hover .card-image { opacity: 0.6; transform: scale(1.1); }
+        .tilt-card:hover .card-bg-overlay { background: linear-gradient(135deg, rgba(230,57,70,0.8) 0%, rgba(15,23,42,0.9) 100%); }
+        .tilt-card.yellow-hover:hover .card-bg-overlay { background: linear-gradient(135deg, rgba(255,193,7,0.8) 0%, rgba(15,23,42,0.9) 100%); }
     </style>
 </head>
 <body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden">
 
     <!-- Navbar Global -->
-    <nav class="fixed w-full z-50 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+    <nav class="fixed w-full z-50 bg-darkBg/90 backdrop-blur-lg border-b border-gray-800/50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="index.html" class="flex-shrink-0 flex items-center gap-3">
-                    <img class="h-16 w-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" src="logo.png" alt="GRUPOTIC Logo">
+                    <img class="h-16 w-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" src="logo.png" alt="GRUPOTIC Logo">
                 </a>
                 <div class="hidden md:block">
-                    <!-- MENÚ COMPLETO -->
                     <div class="ml-10 flex items-baseline space-x-6 items-center">
                         <a href="index.html" class="text-brandYellow font-bold border-b-2 border-brandYellow pb-1">Inicio</a>
                         <a href="nosotros.html" class="hover:text-brandYellow transition duration-300 font-semibold text-sm uppercase tracking-wide">Nosotros</a>
                         <a href="sectores.html" class="hover:text-brandYellow transition duration-300 font-semibold text-sm uppercase tracking-wide">Sectores</a>
                         <a href="mantenimiento.html" class="hover:text-brandYellow transition duration-300 font-semibold text-sm uppercase tracking-wide">Mantenimiento</a>
-                        <a href="contacto.html" class="bg-brandRed text-white px-5 py-2 rounded-full font-bold hover:bg-red-700 transition duration-300 text-sm">Contactar</a>
+                        <a href="contacto.html" class="bg-brandRed text-white px-5 py-2 rounded-full font-bold hover:bg-red-700 transition shadow-[0_0_15px_rgba(230,57,70,0.4)] text-sm">Contactar</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Header Minimalista superior -->
-    <div class="pt-32 pb-6 text-center px-4">
-        <h1 class="text-3xl md:text-5xl font-bold mb-3 tracking-tight">Evolucionamos tu <span class="text-brandYellow">Seguridad</span></h1>
-        <p class="text-gray-400 font-light max-w-2xl mx-auto">Sistemas de integración inteligente para entornos corporativos y residenciales.</p>
+    <!-- Header Impacto -->
+    <div class="pt-32 pb-10 text-center px-4 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brandRed/20 blur-[100px] rounded-full -z-10 pointer-events-none"></div>
+        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight drop-shadow-2xl">
+            Entra a la nueva <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandYellow to-brandRed">Dimensión</span>
+        </h1>
+        <p class="text-gray-400 font-light max-w-2xl mx-auto text-lg">Interactúa con nuestras soluciones de seguridad y automatización.</p>
     </div>
 
-    <!-- SECCIÓN: Acordeón Minimalista -->
-    <section class="pb-20 px-4">
-        <div class="max-w-6xl mx-auto minimal-accordion">
+    <!-- SECCIÓN: Showcase 3D Interactivo -->
+    <section class="pb-24 px-4 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
             
-            <!-- Panel 1: CCTV -->
-            <div class="min-panel active" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80');">
-                <div class="min-overlay"></div>
-                <div class="min-title-closed text-gray-300 hover:text-white">
-                    <i class="fa-solid fa-video text-xl text-brandRed"></i>
-                    <span>CCTV IA</span>
-                </div>
-                <div class="min-content">
-                    <div class="w-10 h-1 bg-brandRed mb-4 rounded"></div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Cámaras con IA</h2>
-                    <p class="text-gray-300 text-sm md:text-base max-w-md mb-6 font-light hidden md:block">Analítica de video avanzada, reconocimiento facial y detección perimetral proactiva para anticipar incidentes.</p>
-                    <a href="contacto.html" class="link-arrow text-brandYellow font-semibold uppercase text-sm tracking-widest flex items-center gap-2">
-                        Cotizar sistema <i class="fa-solid fa-arrow-right-long text-brandRed"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Panel 2: Acceso -->
-            <div class="min-panel" style="background-image: url('https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=1200&q=80');">
-                <div class="min-overlay"></div>
-                <div class="min-title-closed text-gray-300 hover:text-white">
-                    <i class="fa-solid fa-fingerprint text-xl text-brandYellow"></i>
-                    <span>Acceso</span>
-                </div>
-                <div class="min-content">
-                    <div class="w-10 h-1 bg-brandYellow mb-4 rounded"></div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Control de Acceso</h2>
-                    <p class="text-gray-300 text-sm md:text-base max-w-md mb-6 font-light hidden md:block">Ingreso sin contacto mediante biometría facial 3D y tecnología móvil para edificios residenciales y corporativos.</p>
-                    <a href="contacto.html" class="link-arrow text-brandYellow font-semibold uppercase text-sm tracking-widest flex items-center gap-2">
-                        Modernizar ingreso <i class="fa-solid fa-arrow-right-long text-brandRed"></i>
-                    </a>
+            <!-- Tarjeta 1: CCTV (Hover Rojo) -->
+            <div class="tilt-card h-[400px] rounded-3xl border border-gray-700/50 shadow-2xl cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" alt="CCTV" class="card-image">
+                <div class="card-bg-overlay"></div>
+                <div class="glare"></div>
+                
+                <div class="relative z-20 h-full p-8 flex flex-col justify-end">
+                    <div class="pop-out-layer w-16 h-16 bg-black/50 backdrop-blur-md rounded-2xl border border-brandRed flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(230,57,70,0.4)]">
+                        <i class="fa-solid fa-video text-3xl text-brandRed"></i>
+                    </div>
+                    <div class="pop-out-text">
+                        <h2 class="text-3xl font-black text-white mb-2">CCTV IA</h2>
+                        <p class="text-gray-300 text-sm font-light mb-4">Cámaras inteligentes con reconocimiento facial y analítica perimetral.</p>
+                        <span class="text-brandRed font-bold text-sm tracking-widest uppercase flex items-center gap-2">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel 3: Domótica -->
-            <div class="min-panel" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
-                <div class="min-overlay"></div>
-                <div class="min-title-closed text-gray-300 hover:text-white">
-                    <i class="fa-solid fa-leaf text-xl text-brandRed"></i>
-                    <span>BMS</span>
-                </div>
-                <div class="min-content">
-                    <div class="w-10 h-1 bg-brandRed mb-4 rounded"></div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Edificios Inteligentes</h2>
-                    <p class="text-gray-300 text-sm md:text-base max-w-md mb-6 font-light hidden md:block">Automatización de iluminación, clima y energía (BMS) para maximizar la eficiencia y reducir costos operativos.</p>
-                    <a href="contacto.html" class="link-arrow text-brandYellow font-semibold uppercase text-sm tracking-widest flex items-center gap-2">
-                        Descubrir soluciones <i class="fa-solid fa-arrow-right-long text-brandRed"></i>
-                    </a>
+            <!-- Tarjeta 2: Acceso (Hover Amarillo) -->
+            <div class="tilt-card yellow-hover h-[400px] rounded-3xl border border-gray-700/50 shadow-2xl cursor-pointer lg:translate-y-8">
+                <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" alt="Acceso" class="card-image">
+                <div class="card-bg-overlay"></div>
+                <div class="glare"></div>
+                
+                <div class="relative z-20 h-full p-8 flex flex-col justify-end">
+                    <div class="pop-out-layer w-16 h-16 bg-black/50 backdrop-blur-md rounded-2xl border border-brandYellow flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(255,193,7,0.4)]">
+                        <i class="fa-solid fa-fingerprint text-3xl text-brandYellow"></i>
+                    </div>
+                    <div class="pop-out-text">
+                        <h2 class="text-3xl font-black text-white mb-2">Acceso</h2>
+                        <p class="text-gray-300 text-sm font-light mb-4">Biometría avanzada y apertura desde smartphone sin contacto.</p>
+                        <span class="text-brandYellow font-bold text-sm tracking-widest uppercase flex items-center gap-2">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel 4: Redes -->
-            <div class="min-panel" style="background-image: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=1200&q=80');">
-                <div class="min-overlay"></div>
-                <div class="min-title-closed text-gray-300 hover:text-white">
-                    <i class="fa-solid fa-network-wired text-xl text-brandYellow"></i>
-                    <span>Redes</span>
+            <!-- Tarjeta 3: Domótica (Hover Rojo) -->
+            <div class="tilt-card h-[400px] rounded-3xl border border-gray-700/50 shadow-2xl cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="BMS" class="card-image">
+                <div class="card-bg-overlay"></div>
+                <div class="glare"></div>
+                
+                <div class="relative z-20 h-full p-8 flex flex-col justify-end">
+                    <div class="pop-out-layer w-16 h-16 bg-black/50 backdrop-blur-md rounded-2xl border border-brandRed flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(230,57,70,0.4)]">
+                        <i class="fa-solid fa-leaf text-3xl text-brandRed"></i>
+                    </div>
+                    <div class="pop-out-text">
+                        <h2 class="text-3xl font-black text-white mb-2">Inmótica</h2>
+                        <p class="text-gray-300 text-sm font-light mb-4">Automatización de clima, luz y energía para edificios eficientes.</p>
+                        <span class="text-brandRed font-bold text-sm tracking-widest uppercase flex items-center gap-2">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
                 </div>
-                <div class="min-content">
-                    <div class="w-10 h-1 bg-brandYellow mb-4 rounded"></div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Infraestructura Base</h2>
-                    <p class="text-gray-300 text-sm md:text-base max-w-md mb-6 font-light hidden md:block">Redes robustas y cableado estructurado garantizando la comunicación fluida de todos los sistemas de seguridad.</p>
-                    <a href="contacto.html" class="link-arrow text-brandYellow font-semibold uppercase text-sm tracking-widest flex items-center gap-2">
-                        Ver servicios <i class="fa-solid fa-arrow-right-long text-brandRed"></i>
-                    </a>
+            </div>
+
+            <!-- Tarjeta 4: Redes (Hover Amarillo) -->
+            <div class="tilt-card yellow-hover h-[400px] rounded-3xl border border-gray-700/50 shadow-2xl cursor-pointer lg:translate-y-8">
+                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" alt="Redes" class="card-image">
+                <div class="card-bg-overlay"></div>
+                <div class="glare"></div>
+                
+                <div class="relative z-20 h-full p-8 flex flex-col justify-end">
+                    <div class="pop-out-layer w-16 h-16 bg-black/50 backdrop-blur-md rounded-2xl border border-brandYellow flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(255,193,7,0.4)]">
+                        <i class="fa-solid fa-network-wired text-3xl text-brandYellow"></i>
+                    </div>
+                    <div class="pop-out-text">
+                        <h2 class="text-3xl font-black text-white mb-2">Redes</h2>
+                        <p class="text-gray-300 text-sm font-light mb-4">Infraestructura robusta, fibra óptica y WiFi corporativo.</p>
+                        <span class="text-brandYellow font-bold text-sm tracking-widest uppercase flex items-center gap-2">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </div>
 
@@ -224,10 +195,10 @@
     </section>
 
     <!-- Aliados Tecnológicos Minimalistas -->
-    <section class="py-12 border-t border-gray-800">
+    <section class="py-12 border-t border-gray-800/50 bg-[#0b1120]/50">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-xs text-gray-500 font-bold mb-8 uppercase tracking-widest">Partners Tecnológicos</h3>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+            <h3 class="text-xs text-gray-500 font-bold mb-8 uppercase tracking-widest">Tecnología de Punta Respalda Nuestros Servicios</h3>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition duration-500">
                 <div class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-brands fa-aws"></i> AWS</div>
                 <div class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> HIKVISION</div>
                 <div class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-microchip"></i> DAHUA</div>
@@ -237,23 +208,40 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#0b1120] py-6 border-t border-gray-900 text-center">
+    <footer class="bg-black py-6 border-t border-gray-900 text-center">
         <p class="text-gray-600 text-xs font-semibold tracking-widest uppercase">&copy; 2024 GRUPOTIC. Seguridad Inteligente.</p>
     </footer>
 
-    <!-- Script para hacer funcionar el Acordeón -->
+    <!-- SCRIPT MÁGICO 3D -->
     <script>
-        const panels = document.querySelectorAll('.min-panel');
-        panels.forEach(panel => {
-            panel.addEventListener('mouseenter', () => { 
-                document.querySelectorAll('.min-panel').forEach(p => p.classList.remove('active')); 
-                panel.classList.add('active'); 
+        const cards = document.querySelectorAll('.tilt-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // Posición X del mouse dentro de la tarjeta
+                const y = e.clientY - rect.top;  // Posición Y del mouse dentro de la tarjeta
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Cálculo de rotación (Multiplica para mayor o menor efecto)
+                const rotateX = ((y - centerY) / centerY) * -15; 
+                const rotateY = ((x - centerX) / centerX) * 15;
+
+                // Aplica la rotación a la tarjeta
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                
+                // Mueve la capa de "brillo" para seguir el mouse
+                const glare = card.querySelector('.glare');
+                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.3), transparent 50%)`;
             });
-            // Para táctil en móviles
-            panel.addEventListener('click', () => { 
-                document.querySelectorAll('.min-panel').forEach(p => p.classList.remove('active')); 
-                panel.classList.add('active'); 
+
+            // Al sacar el mouse, la tarjeta vuelve a su posición original suavemente
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                const glare = card.querySelector('.glare');
+                glare.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), transparent 50%)`;
             });
         });
     </script>
