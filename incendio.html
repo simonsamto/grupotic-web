@@ -2,77 +2,66 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>PROTECCIÓN CONTRA INCENDIO | GRUPOTIC</title>
+    <title>SISTEMA CONTRA INCENDIO | GRUPOTIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animación de Fuego en Fondo */
-        body { background: #000; color: #fff; overflow-x: hidden; }
-        .fire-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #1a0505, #000);
+        /* Contenedor del video de fondo */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Esto asegura que cubra toda la pantalla sin deformarse */
+        }
+
+        /* Capa oscura para que el texto sea legible sobre el fuego */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Ajusta este valor (0.6) para más o menos oscuridad */
             z-index: -1;
         }
-        .flame {
-            position: absolute; bottom: 0; width: 100%; height: 200px;
-            background: linear-gradient(to top, #ff4500, transparent);
-            filter: blur(40px); animation: flicker 3s infinite alternate;
-        }
-        @keyframes flicker { 0% { opacity: 0.3; transform: scaleY(1); } 100% { opacity: 0.6; transform: scaleY(1.2); } }
-        
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(230, 57, 70, 0.3); }
-        .zoom-img { transition: 0.6s ease; }
-        .zoom-img:hover { transform: scale(1.05); }
     </style>
 </head>
-<body>
-    <div class="fire-bg"><div class="flame"></div></div>
+<body class="text-white font-sans">
 
-    <nav class="p-6 border-b border-red-900/50 flex justify-between items-center backdrop-blur-md">
+    <!-- EL VIDEO DE FONDO -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="fuego.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- TU CONTENIDO AQUÍ -->
+    <nav class="p-8">
         <a href="index.html" class="text-red-500 font-black text-2xl tracking-tighter uppercase">GRUPOTIC // <span class="text-white">FIRE_SYS</span></a>
-        <a href="contacto.html" class="border border-red-500 px-6 py-2 text-xs font-bold hover:bg-red-600 transition">SOLICITAR COTIZACIÓN</a>
     </nav>
 
-    <header class="h-[70vh] flex flex-col justify-center items-center text-center p-6">
-        <h1 class="text-6xl md:text-9xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-yellow-500 drop-shadow-[0_0_15px_rgba(230,57,70,0.8)]">
-            Protección Contra <br> Incendios
+    <main class="max-w-4xl mx-auto p-10">
+        <h1 class="text-6xl font-black uppercase mb-10 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">
+            PROTECCIÓN CONTRA <br> INCENDIOS
         </h1>
-        <p class="mt-8 text-lg font-mono text-gray-400 max-w-xl">Cumplimiento total con normas NFPA 25 y 72. La seguridad de su propiedad horizontal en manos de profesionales certificados.</p>
-    </header>
-
-    <main class="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-8">
-        
-        <!-- Tarjeta 1 -->
-        <div class="glass-card p-6 overflow-hidden">
-            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
-            <h3 class="text-xl font-bold mb-2">Ingeniería NFPA</h3>
-            <p class="text-sm text-gray-400">Diseñamos soluciones hidráulicas de alta precisión bajo estándares internacionales.</p>
+        <div class="bg-black/40 backdrop-blur-md p-8 border-l-4 border-red-600">
+            <h2 class="text-2xl font-bold mb-4">Ingeniería y Diseño</h2>
+            <p class="text-gray-300">
+                Implementamos soluciones bajo normas NFPA 25 y 72. 
+                Nuestra ingeniería garantiza la seguridad de su propiedad horizontal.
+            </p>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="glass-card p-6 overflow-hidden">
-            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1594959965022-de909033d538?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
-            <h3 class="text-xl font-bold mb-2">Detección Temprana</h3>
-            <p class="text-sm text-gray-400">Sistemas inteligentes de alarma contra incendio que garantizan evacuación segura.</p>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="glass-card p-6 overflow-hidden">
-            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
-            <h3 class="text-xl font-bold mb-2">Mantenimiento 7x24</h3>
-            <p class="text-sm text-gray-400">Pólizas de servicio técnico continuo. Reparación de bombas, tableros y redes contra incendio.</p>
-        </div>
-
     </main>
 
-    <section class="max-w-6xl mx-auto p-6 py-20">
-        <div class="glass-card p-10 text-center">
-            <h2 class="text-4xl font-black mb-6">Sistemas de Extinción</h2>
-            <div class="flex flex-wrap justify-center gap-6">
-                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">AGUA PULVERIZADA</span>
-                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">AGENTE LIMPIO</span>
-                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">GAS DE EXTINCIÓN</span>
-            </div>
-        </div>
-    </section>
 </body>
 </html>
