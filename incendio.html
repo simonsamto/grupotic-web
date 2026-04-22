@@ -4,45 +4,56 @@
     <meta charset="UTF-8">
     <title>PROTECCIÓN CONTRA INCENDIO | GRUPOTIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Cargamos la librería de partículas desde un CDN confiable -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; background-color: #000; }
-        .glass { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(230, 57, 70, 0.3); }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; background-color: #050200; }
+        .glass { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 193, 7, 0.2); }
+        .text-fire { text-shadow: 0 0 15px rgba(230, 57, 70, 0.8); }
     </style>
 </head>
 <body class="text-white font-sans">
 
-    <!-- Fondo de Partículas Animadas (Se genera solo) -->
+    <!-- Fondo de Partículas con colores de Calor/Fuego -->
     <div id="particles-js"></div>
 
-    <nav class="p-6 border-b border-red-900/30 flex justify-between items-center backdrop-blur-md">
-        <a href="index.html" class="text-red-500 font-black text-2xl uppercase tracking-tighter">GRUPOTIC</a>
-        <a href="contacto.html" class="border border-red-500 px-6 py-2 text-xs font-bold hover:bg-red-600 transition">COTIZAR</a>
-    </nav>
-
-    <main class="max-w-4xl mx-auto p-10 mt-10">
-        <h1 class="text-6xl font-black uppercase mb-10 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">
+    <main class="max-w-4xl mx-auto p-10 mt-20">
+        <h1 class="text-6xl font-black uppercase mb-10 text-fire text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400">
             SISTEMA DE PROTECCIÓN<br> CONTRA INCENDIOS
         </h1>
-        <div class="glass p-8 border-l-4 border-red-600">
-            <h2 class="text-2xl font-bold mb-4">Ingeniería NFPA</h2>
-            <p class="text-gray-300">Certificados bajo normas NFPA 25 y 72. Instalación de redes hidráulicas, rociadores automáticos y agentes limpios para proteger tus activos críticos.</p>
+        
+        <div class="glass p-8 border-l-4 border-yellow-500 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Ingeniería Certificada</h2>
+            <p class="text-gray-200 leading-relaxed mb-6">
+                Contamos con 12 años de experiencia. Especialistas en normas <strong>NFPA 25 y 72</strong>. 
+                Realizamos desde el diseño de ingeniería hasta el mantenimiento preventivo y correctivo de sus redes hidráulicas y sistemas de detección.
+            </p>
+            <div class="flex gap-4">
+                <a href="contacto.html" class="bg-red-600 px-6 py-2 font-bold hover:bg-red-700 transition">COTIZAR PROYECTO</a>
+            </div>
         </div>
     </main>
 
     <script>
-        // Configuración de las partículas de incendio
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80 },
-                "color": { "value": ["#ff0000", "#ff4500", "#ff8c00"] },
+                "number": { "value": 120 },
+                "color": { "value": ["#ff0000", "#ff4500", "#ff8c00", "#ffd700"] }, /* Mezcla Rojo, Naranja y Amarillo */
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 3, "random": true },
-                "move": { "enable": true, "speed": 2, "direction": "top", "random": true }
+                "opacity": { "value": 0.6, "random": true },
+                "size": { "value": 4, "random": true },
+                "line_linked": { "enable": false },
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5, 
+                    "direction": "top", 
+                    "random": true, 
+                    "out_mode": "out" 
+                }
             },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
+            "interactivity": { 
+                "events": { "onhover": { "enable": true, "mode": "bubble" } },
+                "modes": { "bubble": { "distance": 200, "size": 6, "duration": 2 } }
+            }
         });
     </script>
 </body>
