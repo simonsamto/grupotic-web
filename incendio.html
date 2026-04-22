@@ -1,76 +1,78 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GRUPOTIC | Sistemas Contra Incendio</title>
+    <title>PROTECCIÓN CONTRA INCENDIO | GRUPOTIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background: #050505; color: #fff; font-family: 'Space Mono', monospace; }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.8), rgba(230, 57, 70, 0.2)), url('https://images.unsplash.com/photo-1549646630-671bc4a6238b?auto=format&fit=crop&w=1920&q=80'); background-size: cover; }
-        .card-fire { border: 1px solid rgba(230, 57, 70, 0.3); transition: 0.5s; }
-        .card-fire:hover { border-color: #FFC107; box-shadow: 0 0 20px rgba(230, 57, 70, 0.2); }
-        .text-glow { text-shadow: 0 0 10px rgba(230, 57, 70, 0.8); }
+        /* Animación de Fuego en Fondo */
+        body { background: #000; color: #fff; overflow-x: hidden; }
+        .fire-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #1a0505, #000);
+            z-index: -1;
+        }
+        .flame {
+            position: absolute; bottom: 0; width: 100%; height: 200px;
+            background: linear-gradient(to top, #ff4500, transparent);
+            filter: blur(40px); animation: flicker 3s infinite alternate;
+        }
+        @keyframes flicker { 0% { opacity: 0.3; transform: scaleY(1); } 100% { opacity: 0.6; transform: scaleY(1.2); } }
+        
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(230, 57, 70, 0.3); }
+        .zoom-img { transition: 0.6s ease; }
+        .zoom-img:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
+    <div class="fire-bg"><div class="flame"></div></div>
 
-    <!-- Hero -->
-    <section class="hero-gradient h-[60vh] flex flex-col justify-center items-center text-center p-6">
-        <h1 class="text-5xl md:text-7xl font-black uppercase text-glow tracking-tighter">Sistema de <br> <span class="text-brandRed">Protección Contra Incendios</span></h1>
-        <p class="mt-4 text-brandYellow text-xl uppercase tracking-widest">Norma NFPA 25 / 72 - 12 Años de Respaldo</p>
-    </section>
+    <nav class="p-6 border-b border-red-900/50 flex justify-between items-center backdrop-blur-md">
+        <a href="index.html" class="text-red-500 font-black text-2xl tracking-tighter uppercase">GRUPOTIC // <span class="text-white">FIRE_SYS</span></a>
+        <a href="contacto.html" class="border border-red-500 px-6 py-2 text-xs font-bold hover:bg-red-600 transition">SOLICITAR COTIZACIÓN</a>
+    </nav>
 
-    <!-- Contenido Técnico -->
-    <main class="max-w-6xl mx-auto px-6 py-20">
+    <header class="h-[70vh] flex flex-col justify-center items-center text-center p-6">
+        <h1 class="text-6xl md:text-9xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-yellow-500 drop-shadow-[0_0_15px_rgba(230,57,70,0.8)]">
+            Protección Contra <br> Incendios
+        </h1>
+        <p class="mt-8 text-lg font-mono text-gray-400 max-w-xl">Cumplimiento total con normas NFPA 25 y 72. La seguridad de su propiedad horizontal en manos de profesionales certificados.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-8">
         
-        <!-- Grid de Soluciones -->
-        <div class="grid md:grid-cols-2 gap-12">
-            
-            <!-- Bloque 1: Diseño e Ingeniería -->
-            <div class="card-fire p-8 bg-black/40">
-                <h2 class="text-3xl font-bold mb-6 text-brandRed border-l-4 border-brandRed pl-4">DISEÑO E INGENIERÍA</h2>
-                <p class="text-gray-300 leading-relaxed">
-                    Somos especialistas en implementar soluciones personalizadas. Desarrollamos ingeniería basada en desempeño y relación costo-beneficio, garantizando que cada escenario esté cubierto por las normas internacionales.
-                </p>
-                <div class="mt-8 flex gap-4 text-xs font-bold text-brandYellow">
-                    <span>AGUA</span> | <span>GAS</span> | <span>ESPUMA</span>
-                </div>
-            </div>
-
-            <!-- Bloque 2: Mantenimiento -->
-            <div class="card-fire p-8 bg-black/40">
-                <h2 class="text-3xl font-bold mb-6 text-brandYellow border-l-4 border-brandYellow pl-4">MANTENIMIENTO 7x24</h2>
-                <p class="text-gray-300 leading-relaxed">
-                    Cronogramas de inspección anual bajo norma NFPA 25. Nuestros clientes confían en nuestra capacidad técnica para asegurar la operatividad total de sus redes de emergencia.
-                </p>
-                <div class="mt-8">
-                    <a href="contacto.html" class="bg-brandRed px-6 py-3 uppercase text-sm font-bold hover:bg-red-700 transition">Solicitar Diagnóstico</a>
-                </div>
-            </div>
+        <!-- Tarjeta 1 -->
+        <div class="glass-card p-6 overflow-hidden">
+            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
+            <h3 class="text-xl font-bold mb-2">Ingeniería NFPA</h3>
+            <p class="text-sm text-gray-400">Diseñamos soluciones hidráulicas de alta precisión bajo estándares internacionales.</p>
         </div>
 
-        <!-- Galería de imágenes (Inspirada en tu brochure) -->
-        <section class="mt-20">
-            <h3 class="text-2xl font-black uppercase mb-10 text-center">Infraestructura Técnica</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="h-64 card-fire overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1549646630-671bc4a6238b?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover hover:scale-110 transition duration-700 opacity-60 hover:opacity-100">
-                </div>
-                <div class="h-64 card-fire overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1594959965022-de909033d538?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover hover:scale-110 transition duration-700 opacity-60 hover:opacity-100">
-                </div>
-                <div class="h-64 card-fire overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover hover:scale-110 transition duration-700 opacity-60 hover:opacity-100">
-                </div>
-            </div>
-        </section>
+        <!-- Tarjeta 2 -->
+        <div class="glass-card p-6 overflow-hidden">
+            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1594959965022-de909033d538?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
+            <h3 class="text-xl font-bold mb-2">Detección Temprana</h3>
+            <p class="text-sm text-gray-400">Sistemas inteligentes de alarma contra incendio que garantizan evacuación segura.</p>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="glass-card p-6 overflow-hidden">
+            <div class="h-48 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=800" class="zoom-img w-full h-full object-cover"></div>
+            <h3 class="text-xl font-bold mb-2">Mantenimiento 7x24</h3>
+            <p class="text-sm text-gray-400">Pólizas de servicio técnico continuo. Reparación de bombas, tableros y redes contra incendio.</p>
+        </div>
 
     </main>
 
-    <footer class="text-center py-10 border-t border-gray-900 text-gray-600">
-        GRUPO TIC SAS - SEGURIDAD ELECTRÓNICA Y PROTECCIÓN CONTRA INCENDIOS
-    </footer>
-
+    <section class="max-w-6xl mx-auto p-6 py-20">
+        <div class="glass-card p-10 text-center">
+            <h2 class="text-4xl font-black mb-6">Sistemas de Extinción</h2>
+            <div class="flex flex-wrap justify-center gap-6">
+                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">AGUA PULVERIZADA</span>
+                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">AGENTE LIMPIO</span>
+                <span class="px-6 py-2 bg-red-900/50 rounded-full font-bold">GAS DE EXTINCIÓN</span>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
